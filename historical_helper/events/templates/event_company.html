@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Событие {{ event.title }}
+{% endblock %}
+
+{% block main %}
+<h5>{{ event.title }}</h5>
+<img src="/static/img/{{ event.img_event }}">
+<p>Описание: {{ event.description }}</p>
+<p>Дата: {{ event.date }}</p>
+{% endblock %}

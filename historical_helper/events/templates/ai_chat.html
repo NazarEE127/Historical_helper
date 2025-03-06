@@ -1,0 +1,145 @@
+ {% extends 'base.html' %}
+
+{% block title %}
+ИИ чат
+{% endblock %}
+
+{% block main %}
+ <style>
+     .main {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* Центрирует по горизонтали */
+    align-items: center; /* Центрирует по вертикали */
+    height: 100vh; /* Занимает всю высоту экрана */
+}
+
+.chat-container {
+    width: 400px;
+    height: 500px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-header {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.chat-messages {
+    flex-grow: 1;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+.chat-message {
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 70%;
+    position: relative;
+}
+
+.chat-message.user {
+    background-color: #007bff; /* Цвет для сообщений пользователя */
+    color: white;
+    margin-left: auto; /* Выравнивание вправо */
+}
+
+.chat-message.bot {
+    background-color: #f1f1f1; /* Цвет для сообщений бота */
+    color: black;
+    margin-right: auto; /* Выравнивание влево */
+}
+
+.chat-input {
+    display: flex;
+    padding: 10px;
+}
+
+.chat-input input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.chat-input button {
+    padding: 10px;
+    margin-left: 5px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.chat-input button:hover {
+    background-color: #0056b3;
+}
+
+ </style>
+
+ <div class="main">
+<div class="chat-container">
+        <div class="chat-header">
+            <h2>Чат с ИИ</h2>
+        </div>
+        <div class="chat-messages" id="chat-messages">
+            <!-- Сообщения будут добавляться сюда -->
+        </div>
+        <div class="chat-input">
+                <form method="POST">
+        {% csrf_token %}
+        <textarea name="message-input" placeholder="Введите ваш вопрос" required></textarea>
+        <button id="send-button" type="submit">Отправить</button>
+    </form>
+        </div>
+    </div>
+ </div>
+ <script>
+{% if all_questions|length > 0 %}
+
+
+ let isUserMessage = true; // Переменная для отслеживания, чье сообщение
+    {% for question in all_questions %}
+
+         for (let i=0; i<2; i++){
+            const input = document.getElementById('message-input');
+            let messageText = "";
+            if (i == 0){
+                messageText = "{{ question.user_question }}";
+            }
+            else {
+                messageText = "{{ question.ai_answer }}";
+            }
+            const messagesContainer = document.getElementById('chat-messages');
+            // Создаем новое сообщение
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('chat-message', isUserMessage ? 'user' : 'bot');
+            messageElement.textContent = messageText;
+
+            // Добавляем сообщение в контейнер
+            messagesContainer.appendChild(messageElement);
+
+
+            // Прокручиваем вниз, чтобы видеть новое сообщение
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+            // Меняем состояние для следующего сообщения
+            isUserMessage = !isUserMessage; // Чередуем между пользователем и ботом
+         }
+
+        {% endfor %}
+    {% endif %}
+ </script>
+{% endblock %}
