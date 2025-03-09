@@ -5,9 +5,14 @@
 {% endblock %}
 
 {% block main %}
-<div style="text-align: center">
-    <p>Авторизован: {{ user.username }}</p>
-    <p>Описание сайта</p>
+ {% if user.id %}
+    <div style="text-align:right">
+        <p>Авторизован: {{ user.username }}</p>
+    </div>
+ {% endif %}
+ <div style="text-align: center">
+    <p class="h3">Сайт, для изучения истории Великой Отечественной войны и истории компании ПАО "Татнефть".</p>
+    <p class="h3">Также можете пообщать с ИИ на эти темы, он поможет написать очерки и много чего ещё.</p>
 </div>
 
 

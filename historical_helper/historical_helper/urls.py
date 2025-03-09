@@ -20,13 +20,14 @@ from events.views import *
 
 urlpatterns = [
     path('', index, name='home'),
-    path('admin/', admin.site.urls),
-    path('events_war/', events_list_war),
-    path('events_company/', events_list_company),
-    path('event_war/<int:id>/', event_war),
-    path('event_company/<int:id>/', event_company),
+    path('admin/', admin.site.urls, name='admin'),
+    path('events_war/', events_list_war, name='events_war'),
+    path('events_company/', events_list_company, name='events_company'),
+    path('event_war/<int:id>/', event_war, name='event_war'),
+    path('event_company/<int:id>/', event_company, name='event_company'),
     path('chat/', ai_chat, name='ai_chat'),
     path('accounts/register/', register, name='register'),
     path('accounts/login/', login_view, name='login'),
     path('accounts/logout/', logout_view, name='logout'),
+    path('delete_questions/', delete_questions, name='delete_quests')
 ]
