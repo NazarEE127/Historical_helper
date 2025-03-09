@@ -33,19 +33,19 @@ git clone https://github.com/NazarEE127/Historical_helper.git
 
 Рекомендуется создать виртуальное окружение для вашего проекта, чтобы изолировать зависимости:
 
-# Переход в папку с проектом
+Переход в папку с проектом
 cd Historical_helper
 
-# Установите virtualenv, если он еще не установлен
+Установите virtualenv, если он еще не установлен
 pip install virtualenv
 
-# Создайте виртуальное окружение
+Создайте виртуальное окружение
 virtualenv venv
 
-# Активируйте виртуальное окружение
-# На Windows:
+Активируйте виртуальное окружение
+На Windows:
 venv\Scripts\activate
-# На macOS/Linux:
+На macOS/Linux:
 source venv/bin/activate
 
 
