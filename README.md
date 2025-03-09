@@ -29,22 +29,27 @@ cd Desktop
 git clone https://github.com/NazarEE127/Historical_helper.git
 
 
-3. Установка виртуального окружения (опционально)
+3. Установка виртуального окружения
 
 Рекомендуется создать виртуальное окружение для вашего проекта, чтобы изолировать зависимости:
 
 Переход в папку с проектом
+
 cd Historical_helper
 
 Установите virtualenv, если он еще не установлен
+
 pip install virtualenv
 
 Создайте виртуальное окружение
+
 virtualenv venv
 
 Активируйте виртуальное окружение
+
 На Windows:
 venv\Scripts\activate
+
 На macOS/Linux:
 source venv/bin/activate
 
@@ -54,6 +59,7 @@ source venv/bin/activate
 Перейдите в каталог вашего проекта (где находится файл requirements.txt) и установите зависимости:
 
 cd historical_helper
+
 pip install -r requirements.txt
 
 
@@ -64,7 +70,7 @@ pip install -r requirements.txt
 python manage.py migrate
 
 
-6. Создание суперпользователя (опционально)
+6. Создание суперпользователя (не обязательно)
 
 Если вам нужна административная панель(Уже существует аккаунт админа: логин - admin, пароль - 123), создайте суперпользователя:
 
